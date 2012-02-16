@@ -1,0 +1,63 @@
+{!--
+	This example EE template is taken from the EE documentation and modified slightly.
+	change further to suit your needs.
+	see http://expressionengine.com/user_guide/modules/email/contact_form.html
+--}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+{!-- include script so HTML5 elements will work in IE --}
+<!--[if lt IE 9]> 
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+    <![endif]-->      
+    
+{!-- include JQuery and AJAX contact form script --}    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      <script src="http://www.yourwebsite.com/js/contact-form-ajax.js"></script>
+      
+{!--  change the styling to suit your needs. And of course put your css in a separate 
+	style sheet, not like I show here! --}      
+      <style>
+		body
+		{
+			width: 30em;
+			margin: 2em auto;
+		}
+		#ajax-message 
+		{
+			border: 1px solid #333;
+			background-color: #FFEAEA;
+			padding: 1em;
+			display: none;
+		}
+	</style>
+
+      <title>AJAX EE Contact Form Test Page</title>
+</head>
+<body>
+{exp:email:contact_form user_recipients="no" recipients="you@yourwebsite.com" charset="utf-8"}
+        <h2>Support Form</h2>
+        <p id = "ajax-message">
+        </p>
+        <p>
+                <label for="from">Your Email:</label><br />
+                <input type="text" id="from" name="from" size="40" maxlength="35" value="{member_email}" />
+        </p>
+        <p>
+                <label for="subject">Subject:</label><br />
+                <input type="text" id="subject" name="subject" size="40" value="Contact Form" />
+        </p>
+        <p>
+                <label for="message">Message:</label><br />
+                <textarea id="message" name="message" rows="18" cols="40">
+                        Support Email from: {member_name}
+                        Sent at:  {current_time format="%Y %m %d"}
+                </textarea>
+        </p>
+        <p>
+                <input name="submit" type='submit' value='Submit Form' />
+        </p>
+{/exp:email:contact_form}
+</body>
+</html>
